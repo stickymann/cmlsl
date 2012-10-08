@@ -3,6 +3,7 @@ printToScreen($enquiryrecords,$pagination,$labels,$config);
 
 function getSection1($item,$labels)
 {
+	$baseurl = url::base()."/"."index.php";
 	$label_01 = $labels['id'];				$item_01 = $item->id;
 	$label_02 = $labels['order_id'];		$item_02 = $item->order_id;
 	$label_03 = $labels['branch_id'];		$item_03 = $item->branch_id;
@@ -14,6 +15,7 @@ function getSection1($item,$labels)
 	$label_09 = $labels['phone_home'];		$item_09 = $item->phone_home;
 	$label_10 = $labels['phone_work'];		$item_10 = $item->phone_work;
 	$label_13 = $labels['comments'];		$item_13 = $item->comments;
+	$label_14 = $labels['invoice_note'];	$item_14 = $item->invoice_note;
 
 	if($item->customer_type == 'COMPANY'){$fullname = $item->last_name;}else{$fullname = $item->first_name.' '.$item->last_name;}
 	$address = $item->address1.', '.$item->address2.'<br>'.$item->city;
@@ -22,7 +24,8 @@ function getSection1($item,$labels)
 			<tr valign=top>
 				<td width='50%'>
 					<table width='100%' border=0 cellspacing=0 cellpadding=1>
-						<tr valign=top><td width='46%'>Customer Name : </td><td>$fullname [$item_07]</td></tr>
+						<tr valign=top><td width='46%'>Customer Name : </td>
+						<td><a href='$baseurl/customer/index/$item_07' target='enquiry' title='Edit Customer'>$fullname [$item_07]</td></tr>
 						<tr valign=top><td>Address : </td><td>$address</td></tr>
 						<tr valign=top><td>$label_08 : </td><td>$item_08</td></tr>
 						<tr valign=top><td>$label_09 : </td><td>$item_09</td></tr>
@@ -33,7 +36,8 @@ function getSection1($item,$labels)
 				<td width='50%'>
 					<table width='100%' border=0 cellspacing=0 cellpadding=1>
 						<tr valign=top><td width='46%'>$label_01 : </td><td>$item_01</td></tr>
-						<tr valign=top><td>$label_02 : </td><td>$item_02</td></tr>	
+						<tr valign=top><td>$label_02 : </td>
+						<td><a href='$baseurl/order/index/$item_02' target='enquiry' title='Edit Order'>$item_02</a></td></tr>	
 						<tr valign=top><td>$label_03 : </td><td>$item_03</td></tr>
 						<tr valign=top><td>$label_04 : </td><td>$item_04</td></tr>
 						<tr valign=top><td>$label_05 : </td><td>$item_05</td></tr>
@@ -41,8 +45,12 @@ function getSection1($item,$labels)
 					</table>
 				</td>
 			</tr>
-			<tr><td>$label_13 : </td><td colspan=2>$item_13</td></tr>
 		</table>
+		<table border=0 width='100%' cellspacing=0 cellpadding=2>
+			<tr valign=top><td width='15%'>$label_14 : </td><td>$item_14</td></tr>	
+			<tr valign=top><td>$label_13 : </td><td>$item_13</td></tr>
+		</table>
+
 _HTML_;
 	return $HTML;
 }
@@ -134,12 +142,14 @@ function  subFormHTML($results,$labels)
 
 function Payments($item)
 {
+	$baseurl = url::base()."/"."index.php";
 	$payment = new Payment_Controller();
 	$order_id =  $item->order_id;
 	$TABLEHEADER = ""; $TABLEROWS ="";
 	$querystr = sprintf('select payment_id,branch_id,till_id,amount,payment_type,payment_date,ref_no,order_id,id from %s where order_id = "%s" and payment_status ="VALID"',$payment->param['tb_live'],$order_id);
 	$results = $payment->param['primarymodel']->executeSelectQuery($querystr);
-	$HTML = "<table id='order_enq_details' width='100%'>"."\n";
+	$HTML = sprintf('<a href="%s/payment" target="enquiry" title="New Payment">New Payment</a><br><br>',$baseurl);
+	$HTML .= "<table id='order_enq_details' width='100%'>"."\n";
 	$TABLEHEADER = "<tr valign='top'><th>Payment Id</th><th>Branch Id</th><th>Till Id</th><th>Amount</th><th>Payment Type</th><th>Payment Date</th><th>Ref No</th><th>Order Id</th><th>Id</th></tr>"."\n";
 	foreach($results as $index => $row)
 	{
@@ -147,7 +157,14 @@ function Payments($item)
 		$obj = (array) $row;
 		foreach($obj as $key => $val)
 		{
-			$TABLEROWS .= sprintf('<td valign=top" style="color:black;">%s</td>',$val);
+			if($key == "payment_id")
+			{
+				$TABLEROWS.= sprintf('<td valign="top"><a href="%s/payment/index/%s" target="enquiry" title="Edit Payment">%s</a></td>',$baseurl,$val,$val);
+			}
+			else
+			{
+				$TABLEROWS.= sprintf('<td valign="top" style="color:black;">%s</td>',$val);
+			}
 		}
 		$TABLEROWS .= "</tr>";
 	}
@@ -162,20 +179,23 @@ function Payments($item)
 
 function InventoryCheckoutStatus($item)
 {
+	$baseurl = url::base()."/"."index.php";
 	$invchk = new Inventchkout_Controller();
 	$order_id =  $item->order_id;
-	$TABLEHEADER = ""; $TABLEROWS =""; $HTML="";
+	$TABLEHEADER = ""; $TABLEROWS =""; 
 	$querystr = sprintf('select checkout_details from %s where order_id = "%s"',$invchk->param['tb_live'],$order_id);
 	$results = $invchk->param['primarymodel']->executeSelectQuery($querystr);
+	$HTML = sprintf('Inventory Checkout Id : <a href="%s/inventchkout/index/%s" target="enquiry" title="Edit Inventory Checkout">%s</a><br><br>',$baseurl,$order_id,$order_id);
 	if($results)
 	{
-		$HTML = viewXMLTable($results[0]->checkout_details);	
+		$HTML .= viewXMLTable($results[0]->checkout_details);	
 	}
 	return $HTML;
 }
 
 function DeliveryNote($item)
 {
+	$baseurl = url::base()."/"."index.php";
 	$dnote = new Deliverynote_Controller();
 	$order_id =  $item->order_id;
 	$TABLEHEADER = ""; $TABLEROWS =""; $HTML = "";
@@ -202,7 +222,8 @@ function DeliveryNote($item)
 			<tr valign=top>
 				<td width='50%'>
 					<table width='100%' border=0 cellspacing=0 cellpadding=1>
-						<tr valign=top><td width='46%'>Delivery Note Id: </td><td>$item_02 [$item_01]</td></tr>
+						<tr valign=top><td width='46%'>Delivery Note Id: </td>
+						<td><a href='$baseurl/deliverynote/index/$item_02' target='enquiry' title='Edit Delivery Note'>$item_02</a> [$item_01]</td></tr>
 						<tr valign=top><td>Delivery Date: </td><td>$item_03</td></tr>
 						<tr valign=top><td>Status : </td><td>$item_05</td></tr>
 						<tr valign=top><td>Comments : </td><td>$item_10</td></tr>
@@ -268,6 +289,7 @@ function makePDFXML($item,$label)
 	$order_total = $item->order_total;		$payment_total = $item->payment_total; 
 	$balance = $item->balance;				$sub_total = $item->extended_total;
 	$tax_total = $item->tax_total;			$discount_total = $item->discount_total;
+	$invoice_note = $item->invoice_note;
 
 	$label_id = $label['id'];							$label_order_id = $label['order_id'];
 	$label_branch_id = $label['branch_id'];				$label_inputter = $label['inputter'];
@@ -280,6 +302,7 @@ function makePDFXML($item,$label)
 	$label_order_total = $label['order_total'];			$label_payment_total = $label['payment_total']; 
 	$label_balance = $label['balance'];					$label_sub_total = $label['extended_total'];
 	$label_tax_total = $label['tax_total'];				$label_discount_total = $label['discount_total'];
+	$label_invoice_note = $label['invoice_note'];
 	
 	$XML=<<<_XML_
 <fields>
@@ -305,6 +328,7 @@ function makePDFXML($item,$label)
 	<order_total><label>$label_order_total</label><value>$order_total</value></order_total>
 	<payment_total><label>$label_payment_total</label><value>$payment_total</value></payment_total>
 	<balance><label>$label_balance</label><value>$balance</value></balance>
+	<invoice_note><label>$label_invoice_note</label><value>$invoice_note</value></invoice_note>
 </fields>
 _XML_;
 	return $XML;
@@ -366,19 +390,22 @@ _HTML_;
 
 		$pdf = new Pdf_Controller();
 		$arr['pdf_id']			= $invoice_id;
-		$arr['pdf_template']	= "INVOICE";
+		$arr['pdf_template']	= "GBIZ_INVOICE";
 		$arr['controller']		= $config['controller'];
 		$arr['type']			= $config['type'];
 		$arr['data']			= $pdf_data;
 		$arr['datatype']		= "xml";
 		$arr['idname']			= $config['idname'];
+		
 		if( $pdf->DeleteFromPDFTable($arr) )
 		{
-			$pdf->InsertIntoPDFTableNoDelete($arr);
-			$arr['pdf_id']			= $quotation_id;
-			$arr['pdf_template']	= "QUOTATION";
-			$pdf->InsertIntoPDFTableNoDelete($arr);
+			//wait for deletions
 		}
+		
+		$pdf->InsertIntoPDFTableNoDelete($arr);
+		$arr['pdf_id']			= $quotation_id;
+		$arr['pdf_template']	= "GBIZ_QUOTATION";
+		$pdf->InsertIntoPDFTableNoDelete($arr);
 	}
 }
 ?>

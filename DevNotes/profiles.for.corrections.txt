@@ -1,0 +1,144 @@
+PROFILE : APA (Anti Phospholipid Antibody)
+APAA , 1 , PASS
+APAM , 1 , PASS
+APAG , 1 , PASS
+
+PROFILE : BILI (Bilirubin)
+TBILI , 1 , PASS
+DBILI , 1 , PASS
+IBILI , 1 , PASS
+
+PROFILE : CARDENZY (Cardiac Enzymes)
+SGOT , 1 , PASS
+CPK , 1 , PASS
+LDH , 1 , PASS
+CKMB , 1 , PASS
+
+PROFILE : CARDPROF (Cardiac Profile)
+SGOT , 1 , PASS
+CPK , 1 , PASS
+LDH , 1 , PASS
+CKMB , 1 , PASS
+CHOL , 1 , PASS
+TRIG , 1 , PASS
+HDL , 1 , PASS
+LDL , 0 , FAIL
+VLDL , 1 , PASS
+
+PROFILE : CBC (Complete Blood Count)
+HB , 0 , FAIL
+PCV , 1 , PASS
+WBC , 0 , FAIL
+RBC , 0 , FAIL
+MCV , 1 , PASS
+MCH , 1 , PASS
+MCHC , 1 , PASS
+PLT , 1 , PASS
+
+PROFILE : CMP 20 (Chemistry Metabolic Profile 20)
+FBS , 1 , PASS
+BUN , 1 , PASS
+CREAT , 0 , FAIL
+E , 0 , FAIL
+URC , 1 , PASS
+PROT , 1 , PASS
+ALP , 1 , PASS
+AST , 0 , FAIL
+BILI , 1 , PASS
+MICROALB , 1 , PASS
+
+PROFILE : CSFANALY (CSF Analysis)
+POLYSCSF , 1 , PASS
+LYMPHSCSF , 1 , PASS
+RBCCSF , 1 , PASS
+GLUCCSF , 0 , FAIL
+MICROPCSF , 1 , PASS
+
+PROFILE : DIFF (Differential Count)
+POLYSDIFF , 1 , PASS
+LYMPHSDIFF , 1 , PASS
+MONOCDIFF , 1 , PASS
+EOSINODIFF , 1 , PASS
+BASOPDIFF , 1 , PASS
+
+PROFILE : LFT (Liver Function Tests)
+AST , 0 , FAIL
+ALT , 0 , FAIL
+GGT , 1 , PASS
+ALP , 1 , PASS
+PROT , 1 , PASS
+BILI , 1 , PASS
+
+PROFILE : LIPID (Lipid)
+CHOL , 1 , PASS
+TRIG , 1 , PASS
+HDL , 1 , PASS
+LDL , 0 , FAIL
+VLDL , 1 , PASS
+
+PROFILE : LYTES (Electrolytes)
+SODIUM , 1 , PASS
+POTAS , 1 , PASS
+CHLORIDE , 1 , PASS
+
+PROFILE : OBST (Obstetric Profile)
+HGB , 1 , PASS
+GPRH , 0 , FAIL
+VDRL , 0 , FAIL
+HIV , 0 , FAIL
+
+PROFILE : OGTT (Oral Glucose Tolerance Test)
+FBS , 1 , PASS
+1HR , 0 , FAIL
+2HRS , 0 , FAIL
+3HRS , 0 , FAIL
+
+PROFILE : PROT (Proteins serum)
+TPROT , 1 , PASS
+ALB , 1 , PASS
+GLOB , 1 , PASS
+
+PROFILE : RFT (Renal Function Test)
+BUN , 1 , PASS
+CREATSER , 1 , PASS
+LYTES , 1 , PASS
+PROT , 1 , PASS
+
+PROFILE : RHEUPROF (Rheumatoid Profile)
+CBC , 1 , PASS
+ESR , 1 , PASS
+URC , 1 , PASS
+RHF , 0 , FAIL
+ASOT , 0 , FAIL
+CRP , 0 , FAIL
+
+PROFILE : STDPROF (Sexually Transmitted Profile)
+HIV , 0 , FAIL
+VDRL , 0 , FAIL
+HSV1M , 1 , PASS
+HSV1G , 1 , PASS
+HSV2M , 1 , PASS
+HSV2G , 1 , PASS
+CHLAMM , 1 , PASS
+CHLAMG , 1 , PASS
+
+PROFILE : TFT (Thyroid Function Test)
+TT3 , 1 , PASS
+TT4 , 1 , PASS
+T3UPT , 1 , PASS
+TSH , 1 , PASS
+FTI , 1 , PASS
+
+PROFILE : URINAL (Urine Microscopy)
+COLOR , 0 , FAIL
+APPEARANCE , 0 , FAIL
+PH , 0 , FAIL
+GLUCOSE , 0 , FAIL
+SPECIFICGRAVITY , 0 , FAIL
+ALBUMIN , 0 , FAIL
+RBC , 0 , FAIL
+WBC , 0 , FAIL
+CRYSTALS , 0 , FAIL
+CAST , 0 , FAIL
+EPITHELIALCELLS , 0 , FAIL
+NITRITE , 0 , FAIL

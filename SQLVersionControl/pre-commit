@@ -1,0 +1,10 @@
+#!/bin/sh
+mysqldump -u dbuser -pdbpass --routines cmlsl > SQLVersionControl/cmlsldev.full.sql
+mysqldump -u dbuser -pdbpass --routines --no-data=true cmlsl > SQLVersionControl/cmlsldev.structure.sql
+mysqldump -u dbuser -pdbpass --no-create-info --compact --extended-insert=false cmlsl > SQLVersionControl/cmlsldev.data.sql
+
+git add SQLVersionControl/cmlsldev.full.sql
+git add SQLVersionControl/cmlsldev.structure.sql
+git add SQLVersionControl/cmlsldev.data.sql
+
+exit 0

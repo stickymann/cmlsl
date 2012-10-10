@@ -174,7 +174,7 @@ _XML_;
 
 	public function createInvoices($data,$arr)
 	{
-		$arr['pdf_template'] = "GBIZ_BATCHINVOICES";
+		$arr['pdf_template'] = "BATCHINVOICES";
 		
 		$batch_id = $data['batch_id'];
 		$table = 'batchinvoicedetails';
@@ -196,7 +196,7 @@ _XML_;
 			$pdf_xml = "<?xml version='1.0' standalone='yes'?>"."\n"."<formfields>"."\n";
 			$pdf_xml .= $xmldata;
 			$pdf_xml .= "</formfields>"."\n";
-			$pdf_xml = str_replace('&','and',$pdf_data); 
+			$pdf_xml = str_replace('&','and',$pdf_xml); 
 
 			$data['pdf']->InsertIntoPDFTableNoDelete($arr);
 			$pdftxt = new Csv_Controller();
@@ -224,7 +224,7 @@ _XML_;
 		$pdf = new Pdf_Controller();
 		$data['pdf'] = $pdf;
 		$arr['pdf_id']			= $data['payments'];
-		$arr['pdf_template']	= "GBIZ_BATCHINVOICESUMMARY";
+		$arr['pdf_template']	= "BATCHINVOICESUMMARY";
 		$arr['controller']		= $data['controller'];
 		$arr['type']			= $data['type'];
 		$arr['data']			= $pdf_data;

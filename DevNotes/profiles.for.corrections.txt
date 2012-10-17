@@ -14,6 +14,37 @@ CPK , 1 , PASS
 LDH , 1 , PASS
 CKMB , 1 , PASS
 
+PROFILE : DIFF (Differential Count)
+POLYSDIFF , 1 , PASS
+LYMPHSDIFF , 1 , PASS
+MONOCDIFF , 1 , PASS
+EOSINODIFF , 1 , PASS
+BASOPDIFF , 1 , PASS
+
+PROFILE : LYTES (Electrolytes)
+SODIUM , 1 , PASS
+POTAS , 1 , PASS
+CHLORIDE , 1 , PASS
+
+PROFILE : PROT (Proteins serum)
+TPROT , 1 , PASS
+ALB , 1 , PASS
+GLOB , 1 , PASS
+
+PROFILE : RFT (Renal Function Test)
+BUN , 1 , PASS
+CREATSER , 1 , PASS
+LYTES , 1 , PASS
+PROT , 1 , PASS
+
+PROFILE : TFT (Thyroid Function Test)
+TT3 , 1 , PASS
+TT4 , 1 , PASS
+T3UPT , 1 , PASS
+TSH , 1 , PASS
+FTI , 1 , PASS
+
+==========================================================
 PROFILE : CARDPROF (Cardiac Profile)
 SGOT , 1 , PASS
 CPK , 1 , PASS
@@ -54,13 +85,6 @@ RBCCSF , 1 , PASS
 GLUCCSF , 0 , FAIL
 MICROPCSF , 1 , PASS
 
-PROFILE : DIFF (Differential Count)
-POLYSDIFF , 1 , PASS
-LYMPHSDIFF , 1 , PASS
-MONOCDIFF , 1 , PASS
-EOSINODIFF , 1 , PASS
-BASOPDIFF , 1 , PASS
-
 PROFILE : LFT (Liver Function Tests)
 AST , 0 , FAIL
 ALT , 0 , FAIL
@@ -76,11 +100,6 @@ HDL , 1 , PASS
 LDL , 0 , FAIL
 VLDL , 1 , PASS
 
-PROFILE : LYTES (Electrolytes)
-SODIUM , 1 , PASS
-POTAS , 1 , PASS
-CHLORIDE , 1 , PASS
-
 PROFILE : OBST (Obstetric Profile)
 HGB , 1 , PASS
 GPRH , 0 , FAIL
@@ -92,17 +111,6 @@ FBS , 1 , PASS
 1HR , 0 , FAIL
 2HRS , 0 , FAIL
 3HRS , 0 , FAIL
-
-PROFILE : PROT (Proteins serum)
-TPROT , 1 , PASS
-ALB , 1 , PASS
-GLOB , 1 , PASS
-
-PROFILE : RFT (Renal Function Test)
-BUN , 1 , PASS
-CREATSER , 1 , PASS
-LYTES , 1 , PASS
-PROT , 1 , PASS
 
 PROFILE : RHEUPROF (Rheumatoid Profile)
 CBC , 1 , PASS
@@ -121,13 +129,6 @@ HSV2M , 1 , PASS
 HSV2G , 1 , PASS
 CHLAMM , 1 , PASS
 CHLAMG , 1 , PASS
-
-PROFILE : TFT (Thyroid Function Test)
-TT3 , 1 , PASS
-TT4 , 1 , PASS
-T3UPT , 1 , PASS
-TSH , 1 , PASS
-FTI , 1 , PASS
 
 PROFILE : URINAL (Urine Microscopy)
 COLOR , 0 , FAIL

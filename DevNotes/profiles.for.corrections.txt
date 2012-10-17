@@ -44,7 +44,7 @@ T3UPT , 1 , PASS
 TSH , 1 , PASS
 FTI , 1 , PASS
 
-=========================================================
+==========================================================
 PROFILE : CARDPROF (Cardiac Profile)
 SGOT , 1 , PASS
 CPK , 1 , PASS

@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 5.5.8, for Win32 (x86)
+-- MySQL dump 10.13  Distrib 5.5.25a, for Win32 (x86)
 --
 -- Host: localhost    Database: cmlsl
 -- ------------------------------------------------------
--- Server version	5.5.8
+-- Server version	5.5.25a
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -14,6 +14,21 @@
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `_ext_subcatlookup`
+--
+
+DROP TABLE IF EXISTS `_ext_subcatlookup`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `_ext_subcatlookup` (
+  `sub_category` varchar(50) NOT NULL,
+  `specimendef_table` varchar(255) NOT NULL,
+  `sampledef_table` varchar(255) NOT NULL,
+  PRIMARY KEY (`sub_category`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Table structure for table `_sys_autoids`
@@ -1882,7 +1897,7 @@ CREATE TABLE `pdfs_is` (
   `current_no` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `uniq_pdf_id` (`pdf_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=57 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=99 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2104,7 +2119,7 @@ CREATE TABLE `recordlocks` (
   `record_status` char(4) DEFAULT NULL,
   `current_no` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=34 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=38 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2418,10 +2433,22 @@ DROP TABLE IF EXISTS `sampledef_bloods`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `sampledef_bloods` (
   `id` int(11) unsigned NOT NULL,
-  `sampledef_id` varchar(255) NOT NULL,
-  `test_id` varchar(255) NOT NULL,
-  `specimendef_id` varchar(255) NOT NULL,
-  `required_unit` varchar(255) NOT NULL,
+  `sampledef_id` varchar(71) NOT NULL,
+  `test_id` varchar(50) NOT NULL,
+  `specimendef_id` varchar(20) NOT NULL,
+  `test_alt_name` varchar(255) NOT NULL,
+  `department` varchar(50) NOT NULL,
+  `volume_required` float(16,1) NOT NULL,
+  `result_unit` varchar(20) DEFAULT NULL,
+  `result_format` varchar(10) DEFAULT NULL,
+  `result_range_normal_lower` varchar(255) DEFAULT NULL,
+  `result_range_normal_upper` varchar(255) DEFAULT NULL,
+  `result_normal` varchar(27) DEFAULT NULL,
+  `result_abnormal` varchar(27) DEFAULT NULL,
+  `testrun_result_day` varchar(27) NOT NULL,
+  `rushrun_result_day` varchar(27) NOT NULL,
+  `sample_submit_cutoff_time` varchar(255) NOT NULL,
+  `testrun_time` varchar(255) NOT NULL,
   `inputter` varchar(50) NOT NULL,
   `input_date` datetime NOT NULL,
   `authorizer` varchar(50) NOT NULL,
@@ -2442,10 +2469,22 @@ DROP TABLE IF EXISTS `sampledef_bloods_hs`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `sampledef_bloods_hs` (
   `id` int(11) unsigned NOT NULL,
-  `sampledef_id` varchar(255) NOT NULL,
-  `test_id` varchar(255) NOT NULL,
-  `specimendef_id` varchar(255) NOT NULL,
-  `required_unit` varchar(255) NOT NULL,
+  `sampledef_id` varchar(71) NOT NULL,
+  `test_id` varchar(50) NOT NULL,
+  `specimendef_id` varchar(20) NOT NULL,
+  `test_alt_name` varchar(255) NOT NULL,
+  `department` varchar(50) NOT NULL,
+  `volume_required` float(16,1) NOT NULL,
+  `result_unit` varchar(20) DEFAULT NULL,
+  `result_format` varchar(10) DEFAULT NULL,
+  `result_range_normal_lower` varchar(255) DEFAULT NULL,
+  `result_range_normal_upper` varchar(255) DEFAULT NULL,
+  `result_normal` varchar(27) DEFAULT NULL,
+  `result_abnormal` varchar(27) DEFAULT NULL,
+  `testrun_result_day` varchar(27) NOT NULL,
+  `rushrun_result_day` varchar(27) NOT NULL,
+  `sample_submit_cutoff_time` varchar(255) NOT NULL,
+  `testrun_time` varchar(255) NOT NULL,
   `inputter` varchar(50) NOT NULL,
   `input_date` datetime NOT NULL,
   `authorizer` varchar(50) NOT NULL,
@@ -2465,10 +2504,22 @@ DROP TABLE IF EXISTS `sampledef_bloods_is`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `sampledef_bloods_is` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `sampledef_id` varchar(255) DEFAULT NULL,
-  `test_id` varchar(255) DEFAULT NULL,
-  `specimendef_id` varchar(255) DEFAULT NULL,
-  `required_unit` varchar(255) DEFAULT NULL,
+  `sampledef_id` varchar(71) DEFAULT NULL,
+  `test_id` varchar(50) DEFAULT NULL,
+  `specimendef_id` varchar(20) DEFAULT NULL,
+  `test_alt_name` varchar(255) DEFAULT NULL,
+  `department` varchar(50) DEFAULT NULL,
+  `volume_required` float(16,1) DEFAULT NULL,
+  `result_unit` varchar(20) DEFAULT NULL,
+  `result_format` varchar(10) DEFAULT NULL,
+  `result_range_normal_lower` varchar(255) DEFAULT NULL,
+  `result_range_normal_upper` varchar(255) DEFAULT NULL,
+  `result_normal` varchar(27) DEFAULT NULL,
+  `result_abnormal` varchar(27) DEFAULT NULL,
+  `testrun_result_day` varchar(27) DEFAULT NULL,
+  `rushrun_result_day` varchar(27) DEFAULT NULL,
+  `sample_submit_cutoff_time` varchar(255) DEFAULT NULL,
+  `testrun_time` varchar(255) DEFAULT NULL,
   `inputter` varchar(50) DEFAULT NULL,
   `input_date` datetime DEFAULT NULL,
   `authorizer` varchar(50) DEFAULT NULL,
@@ -2631,12 +2682,11 @@ DROP TABLE IF EXISTS `specimendef_bloods`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `specimendef_bloods` (
   `id` int(11) unsigned NOT NULL,
-  `specimendef_id` varchar(255) NOT NULL,
-  `description` varchar(255) NOT NULL,
-  `full_size_unit` varchar(255) NOT NULL,
+  `specimendef_id` varchar(20) NOT NULL,
+  `description` varchar(100) NOT NULL,
+  `full_size_unit` float(16,1) NOT NULL,
+  `aliquot_size_unit` float(16,1) NOT NULL,
   `unit` varchar(255) NOT NULL,
-  `full_size_qty` varchar(255) NOT NULL,
-  `aliquot_size_unit` varchar(255) NOT NULL,
   `aliquot_type` varchar(255) NOT NULL,
   `inputter` varchar(50) NOT NULL,
   `input_date` datetime NOT NULL,
@@ -2658,12 +2708,11 @@ DROP TABLE IF EXISTS `specimendef_bloods_hs`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `specimendef_bloods_hs` (
   `id` int(11) unsigned NOT NULL,
-  `specimendef_id` varchar(255) NOT NULL,
-  `description` varchar(255) NOT NULL,
-  `full_size_unit` varchar(255) NOT NULL,
+  `specimendef_id` varchar(20) NOT NULL,
+  `description` varchar(100) NOT NULL,
+  `full_size_unit` float(16,1) NOT NULL,
+  `aliquot_size_unit` float(16,1) NOT NULL,
   `unit` varchar(255) NOT NULL,
-  `full_size_qty` varchar(255) NOT NULL,
-  `aliquot_size_unit` varchar(255) NOT NULL,
   `aliquot_type` varchar(255) NOT NULL,
   `inputter` varchar(50) NOT NULL,
   `input_date` datetime NOT NULL,
@@ -2684,12 +2733,11 @@ DROP TABLE IF EXISTS `specimendef_bloods_is`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `specimendef_bloods_is` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `specimendef_id` varchar(255) DEFAULT NULL,
-  `description` varchar(255) DEFAULT NULL,
-  `full_size_unit` varchar(255) DEFAULT NULL,
+  `specimendef_id` varchar(20) DEFAULT NULL,
+  `description` varchar(100) DEFAULT NULL,
+  `full_size_unit` float(16,1) DEFAULT NULL,
+  `aliquot_size_unit` float(16,1) DEFAULT NULL,
   `unit` varchar(255) DEFAULT NULL,
-  `full_size_qty` varchar(255) DEFAULT NULL,
-  `aliquot_size_unit` varchar(255) DEFAULT NULL,
   `aliquot_type` varchar(255) DEFAULT NULL,
   `inputter` varchar(50) DEFAULT NULL,
   `input_date` datetime DEFAULT NULL,
@@ -2699,7 +2747,7 @@ CREATE TABLE `specimendef_bloods_is` (
   `current_no` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `uniq_specimendef_id` (`specimendef_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2711,12 +2759,11 @@ DROP TABLE IF EXISTS `specimendef_csfs`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `specimendef_csfs` (
   `id` int(11) unsigned NOT NULL,
-  `specimendef_id` varchar(255) NOT NULL,
-  `description` varchar(255) NOT NULL,
-  `full_size_unit` varchar(255) NOT NULL,
+  `specimendef_id` varchar(20) NOT NULL,
+  `description` varchar(100) NOT NULL,
+  `full_size_unit` float(16,1) NOT NULL,
+  `aliquot_size_unit` float(16,1) NOT NULL,
   `unit` varchar(255) NOT NULL,
-  `full_size_qty` varchar(255) NOT NULL,
-  `aliquot_size_unit` varchar(255) NOT NULL,
   `aliquot_type` varchar(255) NOT NULL,
   `inputter` varchar(50) NOT NULL,
   `input_date` datetime NOT NULL,
@@ -2738,12 +2785,11 @@ DROP TABLE IF EXISTS `specimendef_csfs_hs`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `specimendef_csfs_hs` (
   `id` int(11) unsigned NOT NULL,
-  `specimendef_id` varchar(255) NOT NULL,
-  `description` varchar(255) NOT NULL,
-  `full_size_unit` varchar(255) NOT NULL,
+  `specimendef_id` varchar(20) NOT NULL,
+  `description` varchar(100) NOT NULL,
+  `full_size_unit` float(16,1) NOT NULL,
+  `aliquot_size_unit` float(16,1) NOT NULL,
   `unit` varchar(255) NOT NULL,
-  `full_size_qty` varchar(255) NOT NULL,
-  `aliquot_size_unit` varchar(255) NOT NULL,
   `aliquot_type` varchar(255) NOT NULL,
   `inputter` varchar(50) NOT NULL,
   `input_date` datetime NOT NULL,
@@ -2764,12 +2810,11 @@ DROP TABLE IF EXISTS `specimendef_csfs_is`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `specimendef_csfs_is` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `specimendef_id` varchar(255) DEFAULT NULL,
-  `description` varchar(255) DEFAULT NULL,
-  `full_size_unit` varchar(255) DEFAULT NULL,
+  `specimendef_id` varchar(20) DEFAULT NULL,
+  `description` varchar(100) DEFAULT NULL,
+  `full_size_unit` float(16,1) DEFAULT NULL,
+  `aliquot_size_unit` float(16,1) DEFAULT NULL,
   `unit` varchar(255) DEFAULT NULL,
-  `full_size_qty` varchar(255) DEFAULT NULL,
-  `aliquot_size_unit` varchar(255) DEFAULT NULL,
   `aliquot_type` varchar(255) DEFAULT NULL,
   `inputter` varchar(50) DEFAULT NULL,
   `input_date` datetime DEFAULT NULL,
@@ -2791,12 +2836,11 @@ DROP TABLE IF EXISTS `specimendef_urines`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `specimendef_urines` (
   `id` int(11) unsigned NOT NULL,
-  `specimendef_id` varchar(255) NOT NULL,
-  `description` varchar(255) NOT NULL,
-  `full_size_unit` varchar(255) NOT NULL,
+  `specimendef_id` varchar(20) NOT NULL,
+  `description` varchar(100) NOT NULL,
+  `full_size_unit` float(16,1) NOT NULL,
+  `aliquot_size_unit` float(16,1) NOT NULL,
   `unit` varchar(255) NOT NULL,
-  `full_size_qty` varchar(255) NOT NULL,
-  `aliquot_size_unit` varchar(255) NOT NULL,
   `aliquot_type` varchar(255) NOT NULL,
   `inputter` varchar(50) NOT NULL,
   `input_date` datetime NOT NULL,
@@ -2818,12 +2862,11 @@ DROP TABLE IF EXISTS `specimendef_urines_hs`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `specimendef_urines_hs` (
   `id` int(11) unsigned NOT NULL,
-  `specimendef_id` varchar(255) NOT NULL,
-  `description` varchar(255) NOT NULL,
-  `full_size_unit` varchar(255) NOT NULL,
+  `specimendef_id` varchar(20) NOT NULL,
+  `description` varchar(100) NOT NULL,
+  `full_size_unit` float(16,1) NOT NULL,
+  `aliquot_size_unit` float(16,1) NOT NULL,
   `unit` varchar(255) NOT NULL,
-  `full_size_qty` varchar(255) NOT NULL,
-  `aliquot_size_unit` varchar(255) NOT NULL,
   `aliquot_type` varchar(255) NOT NULL,
   `inputter` varchar(50) NOT NULL,
   `input_date` datetime NOT NULL,
@@ -2844,12 +2887,11 @@ DROP TABLE IF EXISTS `specimendef_urines_is`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `specimendef_urines_is` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `specimendef_id` varchar(255) DEFAULT NULL,
-  `description` varchar(255) DEFAULT NULL,
-  `full_size_unit` varchar(255) DEFAULT NULL,
+  `specimendef_id` varchar(20) DEFAULT NULL,
+  `description` varchar(100) DEFAULT NULL,
+  `full_size_unit` float(16,1) DEFAULT NULL,
+  `aliquot_size_unit` float(16,1) DEFAULT NULL,
   `unit` varchar(255) DEFAULT NULL,
-  `full_size_qty` varchar(255) DEFAULT NULL,
-  `aliquot_size_unit` varchar(255) DEFAULT NULL,
   `aliquot_type` varchar(255) DEFAULT NULL,
   `inputter` varchar(50) DEFAULT NULL,
   `input_date` datetime DEFAULT NULL,
@@ -4503,4 +4545,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2012-10-08  3:43:30
+-- Dump completed on 2012-10-17  4:09:13

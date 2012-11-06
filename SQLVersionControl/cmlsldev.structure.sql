@@ -615,7 +615,7 @@ CREATE TABLE `customers_is` (
   `record_status` char(4) DEFAULT NULL,
   `current_no` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2123 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2436,6 +2436,7 @@ CREATE TABLE `sampledef_bloods` (
   `sampledef_id` varchar(71) NOT NULL,
   `test_id` varchar(50) NOT NULL,
   `specimendef_id` varchar(20) NOT NULL,
+  `test_location` enum('INTERNAL','EXTERNAL') NOT NULL,
   `test_alt_name` varchar(255) NOT NULL,
   `department` varchar(50) NOT NULL,
   `volume_required` float(16,1) NOT NULL,
@@ -2443,8 +2444,8 @@ CREATE TABLE `sampledef_bloods` (
   `result_format` varchar(10) DEFAULT NULL,
   `result_range_normal_lower` varchar(255) DEFAULT NULL,
   `result_range_normal_upper` varchar(255) DEFAULT NULL,
-  `result_normal` varchar(27) DEFAULT NULL,
-  `result_abnormal` varchar(27) DEFAULT NULL,
+  `result_normal` varchar(255) DEFAULT NULL,
+  `result_abnormal` varchar(255) DEFAULT NULL,
   `testrun_result_day` varchar(27) NOT NULL,
   `rushrun_result_day` varchar(27) NOT NULL,
   `sample_submit_cutoff_time` varchar(255) NOT NULL,
@@ -2472,6 +2473,7 @@ CREATE TABLE `sampledef_bloods_hs` (
   `sampledef_id` varchar(71) NOT NULL,
   `test_id` varchar(50) NOT NULL,
   `specimendef_id` varchar(20) NOT NULL,
+  `test_location` enum('INTERNAL','EXTERNAL') NOT NULL,
   `test_alt_name` varchar(255) NOT NULL,
   `department` varchar(50) NOT NULL,
   `volume_required` float(16,1) NOT NULL,
@@ -2479,8 +2481,8 @@ CREATE TABLE `sampledef_bloods_hs` (
   `result_format` varchar(10) DEFAULT NULL,
   `result_range_normal_lower` varchar(255) DEFAULT NULL,
   `result_range_normal_upper` varchar(255) DEFAULT NULL,
-  `result_normal` varchar(27) DEFAULT NULL,
-  `result_abnormal` varchar(27) DEFAULT NULL,
+  `result_normal` varchar(255) DEFAULT NULL,
+  `result_abnormal` varchar(255) DEFAULT NULL,
   `testrun_result_day` varchar(27) NOT NULL,
   `rushrun_result_day` varchar(27) NOT NULL,
   `sample_submit_cutoff_time` varchar(255) NOT NULL,
@@ -2507,6 +2509,7 @@ CREATE TABLE `sampledef_bloods_is` (
   `sampledef_id` varchar(71) DEFAULT NULL,
   `test_id` varchar(50) DEFAULT NULL,
   `specimendef_id` varchar(20) DEFAULT NULL,
+  `test_location` enum('INTERNAL','EXTERNAL') DEFAULT NULL,
   `test_alt_name` varchar(255) DEFAULT NULL,
   `department` varchar(50) DEFAULT NULL,
   `volume_required` float(16,1) DEFAULT NULL,
@@ -2514,8 +2517,8 @@ CREATE TABLE `sampledef_bloods_is` (
   `result_format` varchar(10) DEFAULT NULL,
   `result_range_normal_lower` varchar(255) DEFAULT NULL,
   `result_range_normal_upper` varchar(255) DEFAULT NULL,
-  `result_normal` varchar(27) DEFAULT NULL,
-  `result_abnormal` varchar(27) DEFAULT NULL,
+  `result_normal` varchar(255) DEFAULT NULL,
+  `result_abnormal` varchar(255) DEFAULT NULL,
   `testrun_result_day` varchar(27) DEFAULT NULL,
   `rushrun_result_day` varchar(27) DEFAULT NULL,
   `sample_submit_cutoff_time` varchar(255) DEFAULT NULL,
@@ -2747,7 +2750,7 @@ CREATE TABLE `specimendef_bloods_is` (
   `current_no` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `uniq_specimendef_id` (`specimendef_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -4545,4 +4548,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2012-10-17  4:10:32
+-- Dump completed on 2012-11-06  8:22:25
